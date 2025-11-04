@@ -2,6 +2,7 @@ import { db } from './guitarras.js';
 
 const divContainer = document.querySelector('main div');
 const carritoContainer = document.querySelector('#carrito');
+const buttonVaid
 let carrito =[]
 
 const createDiv = (guitar) => {
@@ -38,9 +39,13 @@ const carritoCliked = (e) => {
     const idxCarrito = carrito
         .findIndex(g => g.id === Number (idCarrito))
     if(btn === '-'){
-        carrito[idxCarrito].cantidad--
+        if(carrito [idxCarrito].cantidad > 2){
+            carrito[idxCarrito].cantidad--
+        }
     } else if (btn === '+'){
-        carrito[idxCarrito].cantidad++
+        if(carrito[idxCarrito].cantidad < 10){
+            carrito[idxCarrito].cantidad++
+        }
     } else if (btn === 'X'){
         carrito = carrito.filter( g => g.id !== Number(idCarrito))
     }else if (btn === 'VACIAR CARRITO'){
@@ -132,3 +137,4 @@ createCart(carrito)
 
 divContainer.addEventListener('click', cardClicked)
 carritoContainer.addEventListener('click', carritoCliked)
+buttonVaid.addEventListener('clink', cardClinked)
